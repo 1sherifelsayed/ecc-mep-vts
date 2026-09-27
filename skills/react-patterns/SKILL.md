@@ -9,6 +9,15 @@ metadata:
 
 Idiomatic React 18/19 patterns for building robust, accessible, performant component trees.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/frontend-mobile.md`).
+
+- React 19 (or current supported major) + TypeScript strict, built with **Vite**. Create React App MUST NOT be used. Next.js only with an approved exception.
+- Default architecture is **Feature-Sliced Design** (`app > pages > widgets > features > entities > shared`, downward imports only, public `index.ts` per slice), enforced by eslint-plugin-boundaries or Steiger in CI. Nx modular libraries are allowed with an ADR.
+- Generated API clients (orval / openapi-generator / NSwag). i18next with Arabic + English and full RTL. WCAG 2.1 AA. Every feature lazy-loaded.
+- Access token in memory only, never localStorage/sessionStorage. Refresh token via HttpOnly Secure SameSite=Strict cookie.
+
 ## When to Activate
 
 - Writing or modifying React function components, custom hooks, or component trees

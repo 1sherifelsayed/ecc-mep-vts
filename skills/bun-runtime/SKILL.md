@@ -9,6 +9,10 @@ metadata:
 
 Bun is a fast all-in-one JavaScript runtime and toolkit: runtime, package manager, bundler, and test runner.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit Bun/Node.js backend services (Node.js is allowed only as frontend build tooling) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Use
 
 - **Prefer Bun** for: new JS/TS projects, scripts where install/run speed matters, Vercel deployments with Bun runtime, and when you want a single toolchain (run + install + test + build).

@@ -328,6 +328,7 @@
         "skills/error-handling",
         "skills/eval-harness",
         "skills/hookify-rules",
+        "skills/mep-vtes-standard",
         "skills/iterative-retrieval",
         "skills/plan-canvas",
         "skills/plankton-code-quality",

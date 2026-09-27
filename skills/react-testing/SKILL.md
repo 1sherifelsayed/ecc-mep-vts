@@ -9,6 +9,10 @@ metadata:
 
 Comprehensive React testing patterns for behavior-focused component tests, custom hook tests, accessibility assertions, and network-level mocking.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/frontend-mobile.md`). Unit tests use Vitest or Jest, and E2E uses **Playwright**. UI stories must verify Arabic and English text and RTL layout before they meet the Definition of Done, and key pages must reach Lighthouse performance and accessibility of 80 or more.
+
 ## When to Activate
 
 - Writing tests for React components, custom hooks, or pages

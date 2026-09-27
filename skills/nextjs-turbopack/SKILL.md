@@ -9,6 +9,10 @@ metadata:
 
 Next.js 16+ uses Turbopack by default for local development: an incremental bundler written in Rust that significantly speeds up dev startup and hot updates.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit Next.js (React must be built with Vite; Next.js only with a written exception) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Use
 
 - **Turbopack (default dev)**: Use for day-to-day development. Faster cold start and HMR, especially in large apps.

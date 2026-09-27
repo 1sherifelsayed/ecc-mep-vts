@@ -9,6 +9,10 @@ metadata:
 
 Quick reference for PostgreSQL best practices. For detailed guidance, use the `database-reviewer` agent.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Sections 3, 6.5). PostgreSQL 16+ via EF Core + Npgsql with **snake_case** naming (EFCore.NamingConventions). Every schema change is an EF Core migration plus an idempotent SQL script, with no auto-migration in UAT/PROD. Audit columns `created_at, created_by, updated_at, updated_by` (UTC), soft delete where retention is required, enforced FKs, justified indexes, and parameterized queries only.
+
 ## When to Activate
 
 - Writing SQL queries or migrations

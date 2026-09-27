@@ -9,6 +9,10 @@ metadata:
 
 Backend architecture patterns and best practices for scalable server-side applications.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill. For systems delivered to the organization, backends are **C# / ASP.NET Core on .NET 10** only. Node.js, Python, Java, PHP and Go services need an approved Technology Exception. Apply these patterns through one of the three approved styles (Layered / Vertical Slice / Clean+DDD, ADR-001) and the mandatory standards in `references/backend.md` (RabbitMQ, Hangfire, Redis with TTLs, resilience, health checks).
+
 ## When to Activate
 
 - Designing REST or GraphQL API endpoints

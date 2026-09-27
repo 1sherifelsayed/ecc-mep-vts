@@ -7,6 +7,15 @@ metadata:
 
 # Angular Developer Guidelines
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/frontend-mobile.md`).
+
+- Current Active or LTS Angular only, TypeScript strict, standalone components, Signals for local state, lazy-loaded feature routes.
+- Default architecture is **Domain-Driven Modular Libraries (Nx-style)**: `feature` / `data-access` / `ui` / `util` libraries per domain, enforced by `@nx/enforce-module-boundaries` with `scope:` and `type:` tags. A single-app variant uses eslint-plugin-boundaries. FSD is allowed only with an ADR.
+- API clients are generated from the backend OpenAPI document. Arabic + English with full RTL (`@angular/localize` or Transloco), and no hard-coded strings. WCAG 2.1 AA. Build budgets configured.
+- Access token in memory only, refresh token in an HttpOnly Secure SameSite=Strict cookie (BFF preferred), and never localStorage/sessionStorage. A global interceptor maps ProblemDetails to user messages.
+
 ## When to Activate
 
 - Working in any Angular project or codebase

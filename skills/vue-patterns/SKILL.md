@@ -8,6 +8,10 @@ origin: ECC
 
 Comprehensive guide for Vue.js 3 development using Composition API (`<script setup>`), covering component design, reactivity, state management, routing, testing, and SSR patterns. Nuxt-specific guidance is included where it differs from vanilla Vue.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit Vue (web must be Angular or React) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Activate
 
 Activate this skill when:

@@ -77,7 +77,7 @@ Build error resolvers:
 - `build-error-resolver` (generic) / `cpp-build-resolver` / `go-build-resolver` / `java-build-resolver` / `kotlin-build-resolver` / `rust-build-resolver` / `pytorch-build-resolver`
 
 Code reviewers:
-- `python-reviewer` / `typescript-reviewer` / `go-reviewer` / `rust-reviewer` / `cpp-reviewer` / `java-reviewer` / `kotlin-reviewer` / `flutter-reviewer`
+- `python-reviewer` / `typescript-reviewer` / `go-reviewer` / `rust-reviewer` / `cpp-reviewer` / `java-reviewer` / `kotlin-reviewer` / `flutter-reviewer` / `csharp-reviewer` / `react-reviewer`
 
 A misspelled agent name fails `/orchestrate`. Cross-check against this list before emitting.
 
@@ -94,12 +94,14 @@ A misspelled agent name fails `/orchestrate`. Cross-check against this list befo
 
    From this point on, every emitted line uses the matching prefix on **both** the slash command and every agent name. **Never emit both forms in the same output.**
 3. Resolve `--lang`. When `auto`, run a polyglot-aware detection:
-   - Probe markers: `pyproject.toml` / `uv.lock` / `requirements.txt` → python; `package.json` → typescript; `go.mod` → go; `Cargo.toml` → rust; `CMakeLists.txt` or top-level `*.cpp` → cpp; `pom.xml` / `build.gradle` (Java) → java; `build.gradle.kts` or top-level Kotlin → kotlin; `pubspec.yaml` → flutter.
+   - Probe markers: `*.sln` / `*.slnx` / `*.csproj` / `Directory.Packages.props` / `global.json` → csharp; `pyproject.toml` / `uv.lock` / `requirements.txt` → python; `package.json` → typescript; `go.mod` → go; `Cargo.toml` → rust; `CMakeLists.txt` or top-level `*.cpp` → cpp; `pom.xml` / `build.gradle` (Java) → java; `build.gradle.kts` or top-level Kotlin → kotlin; `pubspec.yaml` → flutter.
    - **Polyglot tie-break**: if more than one marker matches, pick the language whose source files outnumber the others (count via `git ls-files`, excluding `vendor/`, `node_modules/`, `dist/`, `build/`, `.venv/`, generated files, and obvious test fixtures). On a tie or when no language exceeds 60% of source files, set `lang=unknown`.
    - No marker matched → set `lang=unknown`.
    - `lang=unknown` is a sentinel — it is **not** an agent name. Phase 2 rules 4 and 5 turn it into `code-reviewer` / `build-error-resolver` at chain composition time.
 4. Detect a **PyTorch sub-profile**: when `lang=python` and any of `pyproject.toml` / `requirements.txt` / `uv.lock` declares a dependency on `torch`, set `pytorch=true`. This only affects `build` chain selection (Phase 2 rule below); the reviewer remains `python-reviewer`.
 5. **Normalize any agent names declared in the plan**: if the plan text references agents by their plugin-prefixed form (e.g. `ecc:tdd-guide`), strip the prefix to get the bare catalogue name before validating or composing chains. Re-prefixing happens only at output time per `ECC_MODE` (Phase 4). Never let a pre-prefixed name flow into chain composition — it would double-prefix in plugin mode.
+
+6. **Apply the organization standard.** Load the `mep-vtes-standard` skill. MEP-VTES-001 governs every plan. Scan the plan for technologies outside the approved stack (for example a Node/Python/Java/Go backend service, Vue/Svelte/Blazor, React Native/MAUI, MongoDB/MySQL, Kafka/Service Bus, Quartz, SPFx/farm solutions/M365/Graph, GitHub Actions or classic pipelines). For each hit, add a line under a `## MEP-VTES-001 compliance` heading at the top of the output: `Step <id>: <technology> is not approved (s3.1); requires a Technology Exception Request or use <approved alternative>`. Still emit the step, but its task description must target the approved alternative unless the plan cites an approved exception ADR.
 
 ### Phase 1 — Decompose steps
 
@@ -140,7 +142,7 @@ Chain composition rules:
 3. `impl` + `db` → `tdd-guide,database-reviewer,<lang>-reviewer`.
 4. **Deduplicate** the resulting chain (preserve first occurrence). E.g. `review` + `lang=unknown` would yield `code-reviewer,code-reviewer` after rule 5; deduplication collapses it to `code-reviewer`.
 5. `<lang>-reviewer` resolves to `code-reviewer` when `lang=unknown`.
-6. `<lang>-build-resolver` resolves to `build-error-resolver` when `lang=unknown`. **Special case**: if Phase 0 set `pytorch=true`, use `pytorch-build-resolver` for `build` chains regardless of `<lang>`. There is no `python-build-resolver`; `--lang=python` without `pytorch=true` resolves to `build-error-resolver`.
+6. `<lang>-build-resolver` resolves to `build-error-resolver` when `lang=unknown` or `lang=csharp` (there is no `csharp-build-resolver`). **Special case**: if Phase 0 set `pytorch=true`, use `pytorch-build-resolver` for `build` chains regardless of `<lang>`. There is no `python-build-resolver`; `--lang=python` without `pytorch=true` resolves to `build-error-resolver`.
 7. **Zero-tag steps**: if no trigger word matches, set chain to `code-reviewer` and write `no tag matched; default review-only chain` under "Chain rationale".
 8. Chain length ≤ 4 after deduplication. If exceeded, drop weakest tag (`lookup` and `docs` first).
 9. Do not pair `planner` and `architect` in an `impl` chain (token waste). Pair them only on `design` steps.
@@ -152,8 +154,9 @@ Each emitted `<task description>` must:
 - Be self-contained (the first agent does not need the plan document open).
 - Start with `[Plan: <path>#step-<id>]`.
 - Include 1–3 verifiable Acceptance criteria.
+- End with the compliance clause `Comply with MEP-VTES-001 (mep-vtes-standard skill).`, followed by the one or two section rules most relevant to the step's tags (e.g. `security` gives `JWT s6.2, deny-by-default authz s6.1`; `db` gives `EF Core migration + idempotent script, audit columns s6.5`; `impl` on a backend gives `ADR-001 architecture style s4`; UI gives `ar/en + RTL, WCAG 2.1 AA s5.6`). If the plan names a work-item ID, include it as `AB#<id>`.
 - Include a Scope guard (`Out of scope: ...`) **only if the plan declares one for this step**. Inherit verbatim. If the plan has no out-of-scope statement, omit the clause entirely — do not invent one.
-- Be 200–600 characters; one line; embedded `"` escaped as `\"`; no literal newlines.
+- Be 200–800 characters (the MEP-VTES-001 compliance clause counts toward the limit); one line; embedded `"` escaped as `\"`; no literal newlines.
 
 ### Phase 4 — Output
 

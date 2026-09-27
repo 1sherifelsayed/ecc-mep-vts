@@ -9,6 +9,10 @@ metadata:
 
 Production-grade Kubernetes patterns for deploying, managing, and debugging workloads reliably.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 6.8). Probes are mapped to `/health/live` and `/health/ready`. CPU/memory requests and limits are mandatory. PROD needs replicas + PodDisruptionBudget. Config goes in ConfigMaps and secrets in K8s Secrets or the org provider. Use one namespace per environment/application, Ingress with TLS, graceful SIGTERM shutdown, and Helm charts or Kustomize overlays per environment (`values-dev|sit|uat|prod.yaml`).
+
 ## When to Activate
 
 - Writing Kubernetes manifests (Deployments, Services, Ingress, Jobs)

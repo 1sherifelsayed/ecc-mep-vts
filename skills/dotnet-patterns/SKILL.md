@@ -9,6 +9,16 @@ metadata:
 
 Idiomatic C# and .NET patterns for building robust, performant, and maintainable applications.
 
+## Organization Standard (MEP-VTES-001)
+
+MEP-VTES-001 overrides the generic guidance below wherever they conflict. See the `mep-vtes-standard` skill (`references/backend.md`, `references/tech-stack.md`).
+
+- New work targets **.NET 10 LTS** (.NET 8 is not accepted), ASP.NET Core Web API, nullable enabled, Central Package Management (`Directory.Packages.props`), `Directory.Build.props` (TreatWarningsAsErrors in Release), `.editorconfig`, and a `global.json` that pins the SDK.
+- Exactly one architecture style per deployable (Layered / Vertical Slice / Clean+DDD), chosen by the selection matrix and recorded in ADR-001. Architecture tests are mandatory for Vertical Slice and Clean.
+- Options use `ValidateDataAnnotations().ValidateOnStart()`. Outbound HTTP uses `Microsoft.Extensions.Http.Resilience` (retry with jitter, timeout, circuit breaker). Store UTC and inject `TimeProvider`. Health checks at `/health/live` and `/health/ready`.
+- Errors are ProblemDetails (RFC 9457). Logging is Serilog CLEF with the mandatory properties and message templates only.
+- Do not add MediatR 13+, AutoMapper 15+, MassTransit 9+ or FluentAssertions 8+ (commercial). Use direct handlers, Mapperly or hand-written mappers, MassTransit v8, Shouldly, or pin the last OSS major.
+
 ## When to Activate
 
 - Writing new C# code

@@ -12,6 +12,10 @@ metadata:
 
 Practical accessibility patterns for React and Next.js. Covers the issues most commonly flagged in code review: missing form labels, incorrect ARIA usage, non-semantic interactive elements, and broken keyboard navigation.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill. The organization requires **WCAG 2.1 Level AA** on all web and mobile UIs, full Arabic/English RTL support, and Lighthouse accessibility and performance scores of 80 or more on key pages (Section 5.6).
+
 ## When to Activate
 
 - Building or reviewing form components (`<input>`, `<select>`, `<textarea>`)

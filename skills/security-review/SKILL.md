@@ -9,6 +9,17 @@ metadata:
 
 This skill ensures all code follows security best practices and identifies potential vulnerabilities.
 
+## Organization Standard (MEP-VTES-001)
+
+Reviews for organization systems apply MEP-VTES-001 Section 6. See the `mep-vtes-standard` skill (`references/cross-cutting.md`, `references/sharepoint.md`).
+
+- OWASP ASVS L2 + OWASP Top 10 / Mobile Top 10. NCA ECC and PDPL for personal data. All data, backups and logs stay in KSA. TLS 1.2+ on every hop.
+- String-concatenated SQL is **CRITICAL**. Authorization is policy-based and deny-by-default (`[Authorize]` globally). Security headers (HSTS, CSP, X-Content-Type-Options, Referrer-Policy, frame-ancestors). Audit trail on CUD and security events.
+- JWT: RS256/ES256, access token 15 min or less, ClockSkew 30 s or less, all Validate* flags true, rotating hashed refresh tokens with reuse detection, minimal claims (no national ID / Iqama / salary).
+- LDAP: LDAPS or StartTLS only (no simple bind on 389), RFC 4515 filter escaping, read-only service account from the secret store, and passwords never stored or logged.
+- CLEF logs must not contain passwords, tokens, keys, connection strings, national IDs, contact details, payment data or document contents.
+- Secrets only via K8s Secrets, ACL-protected IIS environment variables, or the org secret store.
+
 ## When to Activate
 
 - Implementing authentication or authorization

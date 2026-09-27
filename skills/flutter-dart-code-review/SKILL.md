@@ -11,6 +11,10 @@ Comprehensive, library-agnostic checklist for reviewing Flutter/Dart application
 
 ---
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill. Flag as HIGH: domain layer importing Flutter or packages, more than one state-management approach, tokens outside flutter_secure_storage, hard-coded user-facing strings or missing RTL, non-obfuscated release config, any Dart analyzer warning (zero allowed), and dependencies with non-permitted licences or unpinned `pubspec.lock`.
+
 ## 1. General Project Health
 
 - [ ] Project follows consistent folder structure (feature-first or layer-first)

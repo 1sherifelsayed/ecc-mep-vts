@@ -7,6 +7,15 @@ metadata:
 
 # Dart/Flutter Patterns
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/frontend-mobile.md`).
+
+- Flutter latest stable 3.x, Dart sound null safety, one codebase for Android + iOS. **One** state-management approach per project (BLoC *or* Riverpod), recorded in an ADR.
+- Default architecture is **Feature-First Clean Architecture**: `features/<name>/{data, domain, presentation}`, with pure-Dart domain (`presentation -> domain <- data`), enforced by flutter_lints / very_good_analysis + custom_lint.
+- Flavors `main_dev|uat|prod.dart`. Localization via flutter_localizations + ARB (ar/en, RTL). Semantics for accessibility.
+- Tokens in flutter_secure_storage. Release builds use `--obfuscate --split-debug-info` with symbols handed over. Keystores, certificates and store listings are under the organization's accounts.
+
 ## When to Use
 
 Use this skill when:

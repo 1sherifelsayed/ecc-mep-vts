@@ -9,6 +9,10 @@ metadata:
 
 Best practices for securing Quarkus applications with authentication, authorization, and input validation.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit Java/Quarkus services (backends must be C#/.NET) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Activate
 
 - Adding authentication (JWT, OIDC, Basic Auth)

@@ -10,6 +10,10 @@ metadata:
 
 This skill ensures all code development follows TDD principles with comprehensive test coverage.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 2.4). A story is Done only when it is merged via an approved Azure DevOps PR with a passing pipeline (build, lint, tests, scans), unit tests are written and coverage thresholds are met with no new analyzer warnings, QA has verified the Given/When/Then acceptance criteria, ar/en + RTL is verified for UI, docs are updated, and it is deployed to SIT/UAT through the pipeline. Mandatory test types: unit, integration (Testcontainers), architecture (Clean / Vertical Slice), E2E (Playwright / Flutter integration_test).
+
 ## When to Activate
 
 - Writing new features or functionality

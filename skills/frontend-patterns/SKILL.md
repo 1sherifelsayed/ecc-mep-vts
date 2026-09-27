@@ -9,6 +9,10 @@ metadata:
 
 Modern frontend patterns for React, Next.js, and performant user interfaces.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/frontend-mobile.md`). Only Angular or React (Vue, Svelte, Blazor and jQuery-based new UIs are not approved). Code is organized feature-first (no app-wide `components/`, `services/`, `models/` at the top level), each feature exposes one public entry point, boundaries are lint-enforced in CI, API clients are generated from OpenAPI, features are lazy-loaded, tokens are never in localStorage/sessionStorage, and there is no hard-coded user-facing text (ar/en + RTL).
+
 ## When to Activate
 
 - Building React components (composition, props, rendering)

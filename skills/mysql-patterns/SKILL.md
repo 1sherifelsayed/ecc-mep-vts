@@ -13,6 +13,10 @@ production database configuration. Prefer exact version checks before applying a
 feature-specific pattern because MySQL and MariaDB have diverged in several SQL
 details.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit MySQL as a system of record (use SQL Server or PostgreSQL) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## Activation
 
 - Designing MySQL or MariaDB tables, indexes, and constraints

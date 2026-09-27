@@ -9,6 +9,10 @@ metadata:
 
 Best practices for Git version control, branching strategies, and collaborative development.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 6.6). The source of truth is **Git on Azure DevOps Repos** (not GitHub/GitLab/Bitbucket). Trunk-based (preferred) or GitFlow-lite, recorded in an ADR. Branches are `feature/<workItemId>-short-name`, `bugfix/<workItemId>-short-name`, `hotfix/<version>`. Commits are Conventional Commits with the work item, e.g. `feat(invoices): add approval AB#1234`. Main is protected: PR, at least one org reviewer, build validation, linked work item, comments resolved, no direct or force pushes. Releases are tagged `vMAJOR.MINOR.PATCH`. Full history is preserved (a squashed handover commit is rejected).
+
 ## When to Activate
 
 - Setting up Git workflow for a new project

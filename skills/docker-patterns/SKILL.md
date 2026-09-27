@@ -7,6 +7,10 @@ description: Docker and Docker Compose patterns for local development, hardened 
 
 Docker and Docker Compose best practices for containerized development.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 6.8). Multi-stage OCI builds on official `mcr.microsoft.com/dotnet/*` images pinned by tag or digest, non-root (`USER $APP_UID`), read-only root filesystem where feasible, no privileged containers, no secrets or config baked into images, and images pushed only to the organization's registry.
+
 ## Docker Compose for Local Development
 
 ### Standard Web App Stack

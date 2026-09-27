@@ -9,6 +9,15 @@ metadata:
 
 Comprehensive testing patterns for .NET applications using xUnit, FluentAssertions, and modern testing practices.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (`references/backend.md`).
+
+- Architecture tests (NetArchTest / ArchUnitNET) that fail the build on forbidden dependencies are **mandatory** for Clean Architecture and Vertical Slice.
+- Integration tests use Testcontainers (SQL Server / PostgreSQL / Redis / RabbitMQ) and never touch shared or production environments.
+- FluentAssertions 8+ is commercially licensed. Use Shouldly or pin FluentAssertions 7.x unless an org-owned licence is approved.
+- The Definition of Done requires coverage thresholds met and no new analyzer warnings, enforced in the Azure Pipelines CI gate.
+
 ## When to Activate
 
 - Writing new tests for C# code

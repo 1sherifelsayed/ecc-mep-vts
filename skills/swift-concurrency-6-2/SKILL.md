@@ -7,6 +7,10 @@ description: Swift 6.2 Approachable Concurrency — single-threaded by default, 
 
 Patterns for adopting Swift 6.2's concurrency model where code runs single-threaded by default and concurrency is introduced explicitly. Eliminates common data-race errors without sacrificing performance.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit native-only iOS apps (mobile must be Flutter) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Activate
 
 - Migrating Swift 5.x or 6.0/6.1 projects to Swift 6.2

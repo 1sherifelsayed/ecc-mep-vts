@@ -9,6 +9,10 @@ metadata:
 
 Hexagonal architecture (Ports and Adapters) keeps business logic independent from frameworks, transport, and persistence details. The core app depends on abstract ports, and adapters implement those ports at the edges.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill. Under MEP-VTES-001, backends must adopt one of exactly three styles. Ports-and-adapters is realized through **Clean Architecture + DDD** (Domain / Application with ports / Infrastructure adapters / Api, architecture tests enforcing inward dependencies), recorded in ADR-001 with a bounded-context map.
+
 ## When to Use
 
 - Building new features where long-term maintainability and testability matter.

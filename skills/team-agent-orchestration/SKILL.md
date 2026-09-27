@@ -16,6 +16,28 @@ Use this skill when agents are being managed like a team rather than a single as
 - A project needs shared workflow state across people and agents.
 - Existing agent fan-out is producing output but not mergeable product.
 
+## Organization Standard (MEP-VTES-001)
+
+All team work is governed by the organization's Vendor Technology and Engineering
+Standard. Load `mep-vtes-standard` before shaping the
+board and pass its relevant rules into every agent's card prompt:
+
+- **Work items**: cards mirror Azure DevOps work items (Epic / Feature / User Story /
+  Task / Bug). A card is Ready only when it meets the Definition of Ready (linked
+  requirement ID, Given/When/Then acceptance criteria, UI design or API contract).
+- **Branches**: `feature/<workItemId>-short-name` / `bugfix/<workItemId>-short-name`;
+  commits are Conventional Commits with `AB#<id>`; integration only via an Azure DevOps
+  PR with build validation and an org reviewer on main.
+- **Merge gate = Definition of Done**: pipeline green (build, lint, unit + architecture
+  tests, coverage, SAST, SCA, secret and image scans), MEP-VTES-001 compliance checklist
+  clean, docs updated (OpenAPI, ADRs, README, runbook, `docs/ai-usage.md`), ar/en + RTL
+  verified for UI.
+- **Scope guard**: no agent introduces a technology outside the approved stack. That
+  needs a Technology Exception Request, so the card moves to Blocked with the owner set to the user.
+- **AI accountability**: agent output is held to the same gates as human code, every
+  suggested package is verified to exist, be maintained and be licence-compliant, and the
+  agent config files that shaped the code are committed.
+
 ## Operating Model
 
 Treat every agent as a teammate with a narrow contract:
@@ -99,6 +121,7 @@ When a card needs dynamic workflow mode:
 - **Board theater**: a Kanban board exists but cards have no acceptance criteria.
 - **Overlapping writes**: parallel agents edit the same files without worktrees.
 - **No product artifact**: the process produces docs but no runnable or publishable surface.
+- **Standard drift**: agents pick non-approved tech or skip ADR-001, CLEF logging, or ar/en + RTL because the MEP-VTES-001 rules never reached their card prompt.
 
 ## Output Standard
 

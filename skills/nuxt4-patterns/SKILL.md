@@ -9,6 +9,10 @@ metadata:
 
 Use when building or debugging Nuxt 4 apps with SSR, hybrid rendering, route rules, or page-level data fetching.
 
+## Organization Standard (MEP-VTES-001)
+
+**Not approved for organization systems.** MEP-VTES-001 Section 3.1 does not permit Nuxt/Vue (web must be Angular or React) without a written Technology Exception Request approved by Enterprise Architecture and Cybersecurity before use. Use this skill only for work outside organization deliveries, or where an approved exception ADR exists. See the `mep-vtes-standard` skill.
+
 ## When to Activate
 
 - Hydration mismatches between server HTML and client state

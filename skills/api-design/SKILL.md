@@ -9,6 +9,10 @@ metadata:
 
 Conventions and best practices for designing consistent, developer-friendly REST APIs.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 4.5). Mandatory: RESTful resources, URL versioning `/api/v1/...`, OpenAPI 3.x generated at build and exported to `docs/api/openapi.json` per release, camelCase JSON, errors as **ProblemDetails (RFC 9457)**, server-side pagination, filtering and sorting on every list endpoint, and server-side validation of all input.
+
 ## When to Activate
 
 - Designing new API endpoints

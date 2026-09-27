@@ -9,6 +9,10 @@ metadata:
 
 Production deployment workflows and CI/CD best practices.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Sections 6.7-6.9). CI/CD is **Azure Pipelines YAML** stored in the repo (classic pipelines are rejected). CI runs restore, build, lint, unit + architecture tests, coverage gate, SAST, SCA, secret scan, image build and scan (e.g. Trivy), plus a CycloneDX SBOM per release. CD promotes the **same immutable artifact** DEV to SIT to UAT to PROD with org-owned manual approvals on UAT/PROD. Images go only to the org registry, tagged SemVer + commit SHA. No manual UAT/PROD deploys. IIS hosting is in-process with a dedicated No Managed Code pool, and uses `app_offline.htm` deployments.
+
 ## When to Activate
 
 - Setting up CI/CD pipelines

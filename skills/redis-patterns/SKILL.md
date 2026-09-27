@@ -9,6 +9,10 @@ metadata:
 
 Quick reference for Redis best practices across common backend use cases.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill (Section 4.6). Redis 7+ is for cache and short-lived state only, never the system of record. Key naming is `{app}:{context}:{entity}:{id}`, **every key has a TTL**, the pattern is cache-aside with explicit invalidation, and the app must stay functionally correct if Redis is unavailable. TLS 1.2+ applies.
+
 ## How It Works
 
 Redis is an in-memory data structure store that supports strings, hashes, lists, sets, sorted sets, streams, and more. Individual Redis commands are atomic on a single instance; multi-step workflows require Lua scripts, MULTI/EXEC transactions, or explicit synchronization to stay atomic. Data is optionally persisted via RDB snapshots or AOF logs. Clients communicate over TCP using the RESP protocol; connection pools are essential to avoid per-request handshake overhead.

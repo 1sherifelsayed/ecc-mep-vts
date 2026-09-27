@@ -9,6 +9,10 @@ metadata:
 
 Capture architectural decisions as they happen during coding sessions. Instead of decisions living only in Slack threads, PR comments, or someone's memory, this skill produces structured ADR documents that live alongside the code.
 
+## Organization Standard (MEP-VTES-001)
+
+See the `mep-vtes-standard` skill. ADRs use the **MADR** template in `docs/adr/`. **ADR-001** records the backend architecture style (Layered / Vertical Slice / Clean+DDD) with explicit reference to the selection matrix, plus a bounded-context map for Clean+DDD. ADRs are also required for the branching model, the frontend architecture if not the default, the Flutter state-management choice, the SharePoint approach (A or B), every SHOULD deviation, and every approved Technology Exception (never retroactive).
+
 ## When to Activate
 
 - User explicitly says "let's record this decision" or "ADR this"

@@ -15,6 +15,10 @@ This skill is the shared floor, not the detailed framework playbook.
 - Use `backend-patterns` or `api-design` for repository/service layers, endpoint design, validation, and server-specific concerns.
 - Use `rules/common/coding-style.md` when you need the shortest reusable rule layer instead of a full skill walkthrough.
 
+## Organization Standard (MEP-VTES-001)
+
+For organization systems, MEP-VTES-001 is authoritative over these generic standards. See the `mep-vtes-standard` skill: approved stack only, one ADR-backed architecture style, CLEF logging, ar/en + RTL, deny-by-default security, licence-clean pinned dependencies.
+
 ## When to Activate
 
 - Starting a new project or module
